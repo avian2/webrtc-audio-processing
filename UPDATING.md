@@ -19,9 +19,7 @@ project source code.
    * For each directory in the ```webrtc-audio-processing``` tree, go over the
      corresponding code in the ```chromium``` tree.
 
-   * Examine changed files, and pick any new changes. A small number of files
-     in the ```webrtc-audio-processing``` tree have been changed by hand, make
-     sure that those are not overwritten.
+   * Examine changed files, and pick any new changes.
 
    * unittest files have been left out since they are not built or used.
 
