@@ -11,7 +11,6 @@ nobase_webrtcinclude_HEADERS = webrtc/api/video/video_rotation.h \
 			       webrtc/api/rtp_headers.h \
 			       webrtc/rtc_base/arraysize.h \
 			       webrtc/rtc_base/deprecation.h \
-			       webrtc/rtc_base/array_view.h \
 			       webrtc/rtc_base/checks.h \
 			       webrtc/rtc_base/refcount.h \
 			       webrtc/rtc_base/scoped_ref_ptr.h \

@@ -1,7 +1,6 @@
 noinst_LTLIBRARIES = librtc_base.la
 
-noinst_HEADERS = array_view.h \
-		 arraysize.h \
+noinst_HEADERS = arraysize.h \
 		 atomicops.h \
 		 basictypes.h \
 		 constructormagic.h \
