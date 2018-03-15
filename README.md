@@ -14,6 +14,11 @@ several different projects.
 [1] http://code.google.com/p/webrtc/
 [2] https://chromium.googlesource.com/external/webrtc/trunk/webrtc.git
 
+Current state
+=============
+
+Synced to webrtc git commit 3133857, as used by Chromium 67.0.3370.0.
+
 Feedback
 ========
 
