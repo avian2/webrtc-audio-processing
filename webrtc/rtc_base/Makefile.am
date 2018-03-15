@@ -29,6 +29,7 @@ librtc_base_la_SOURCES = criticalsection.cc \
 		     logging.cc \
 		     logging.h \
 		     platform_thread.cc \
+		     platform_thread_types.cc \
 		     platform_thread_types.h \
 		     platform_file.cc \
 		     platform_file.h \
@@ -38,6 +39,8 @@ librtc_base_la_SOURCES = criticalsection.cc \
 		     stringencode.h \
 		     stringutils.cc \
 		     stringutils.h \
+		     strings/string_builder.cc \
+		     strings/string_builder.h \
 		     thread_checker.h \
 		     thread_checker_impl.cc \
 		     thread_checker_impl.h \

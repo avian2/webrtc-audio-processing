@@ -2,6 +2,8 @@ lib_LTLIBRARIES = libwebrtc_audio_processing.la
 
 libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					include/audio_processing.h \
+					include/aec_dump.cc \
+					include/aec_dump.h \
 					include/config.cc \
 					include/config.h \
 					aec/aec_common.h \
@@ -47,6 +49,8 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/erl_estimator.h \
 					aec3/erle_estimator.cc \
 					aec3/erle_estimator.h \
+					aec3/fft_buffer.cc\
+					aec3/fft_buffer.h\
 					aec3/fft_data.h \
 					aec3/frame_blocker.cc \
 					aec3/frame_blocker.h \
@@ -72,6 +76,8 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/residual_echo_estimator.h \
 					aec3/shadow_filter_update_gain.cc \
 					aec3/shadow_filter_update_gain.h \
+					aec3/skew_estimator.cc \
+					aec3/skew_estimator.h \
 					aec3/subtractor.cc \
 					aec3/subtractor.h \
 					aec3/subtractor_output.h \
@@ -79,6 +85,10 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/suppression_filter.h \
 					aec3/suppression_gain.cc \
 					aec3/suppression_gain.h \
+					aec3/suppression_gain_limiter.cc \
+					aec3/suppression_gain_limiter.h \
+					aec3/vector_buffer.cc \
+					aec3/vector_buffer.h \
 					aec3/vector_math.h \
 					aecm/echo_control_mobile.cc \
 					aecm/echo_control_mobile.h \
@@ -100,6 +110,14 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					agc/loudness_histogram.h \
 					agc/utility.cc \
 					agc/utility.h \
+					agc2/fixed_digital_level_estimator.cc \
+					agc2/fixed_digital_level_estimator.h \
+					agc2/fixed_gain_controller.cc \
+					agc2/fixed_gain_controller.h \
+					agc2/interpolated_gain_curve.cc \
+					agc2/interpolated_gain_curve.h \
+					agc2/gain_curve_applier.cc \
+					agc2/gain_curve_applier.h \
 					beamformer/array_util.cc \
 					beamformer/array_util.h \
 					beamformer/complex_matrix.h \
@@ -182,6 +200,8 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					gain_control_for_experimental_agc.h \
 					gain_control_impl.cc \
 					gain_control_impl.h \
+					gain_controller2.cc \
+					gain_controller2.h \
 					level_estimator_impl.cc \
 					level_estimator_impl.h \
 					low_cut_filter.cc \
@@ -257,6 +277,7 @@ libwebrtc_audio_processing_la_CXXFLAGS = $(AM_CXXFLAGS) $(COMMON_CXXFLAGS) \
 				       -DWEBRTC_INTELLIGIBILITY_ENHANCER=1
 
 libwebrtc_audio_processing_la_LIBADD = $(top_builddir)/webrtc/libwebrtc.la \
+				       $(top_builddir)/webrtc/api/libapi.la \
 				       $(top_builddir)/webrtc/rtc_base/librtc_base.la \
 				       $(top_builddir)/webrtc/system_wrappers/libsystem_wrappers.la \
 				       $(top_builddir)/webrtc/common_audio/libcommon_audio.la \
