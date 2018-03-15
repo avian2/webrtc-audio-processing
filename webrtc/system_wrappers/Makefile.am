@@ -2,9 +2,7 @@ noinst_LTLIBRARIES = libsystem_wrappers.la
 
 noinst_HEADERS = include/aligned_array.h \
 		 include/asm_defines.h \
-		 include/compile_assert_c.h \
-		 include/event_wrapper.h \
-		 include/static_instance.h
+		 include/event_wrapper.h
 
 libsystem_wrappers_la_SOURCES = include/aligned_malloc.h \
 				include/cpu_features_wrapper.h \
@@ -26,7 +24,6 @@ libsystem_wrappers_la_SOURCES = include/aligned_malloc.h \
 				source/rw_lock_posix.h \
 				source/rw_lock_win.h \
 				source/sleep.cc \
-				source/trace_impl.cc \
 				source/trace_impl.h \
 				source/trace_posix.h \
 				source/trace_win.h
@@ -35,8 +32,7 @@ EXTRA_DIST = BUILD.gn
 
 if HAVE_POSIX
 libsystem_wrappers_la_SOURCES += source/event_timer_posix.cc \
-				 source/rw_lock_posix.cc \
-				 source/trace_posix.cc
+				 source/rw_lock_posix.cc
 else
 EXTRA_DIST += source/event_timer_posix.cc \
 	      source/rw_lock_posix.cc \

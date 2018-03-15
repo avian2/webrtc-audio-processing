@@ -1,4 +1,4 @@
-SUBDIRS = . api audio base common_audio system_wrappers modules
+SUBDIRS = . api audio rtc_base common_audio system_wrappers modules
 
 noinst_HEADERS = common_types.h \
 		 typedefs.h

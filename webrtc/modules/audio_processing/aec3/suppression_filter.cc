@@ -8,7 +8,7 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/modules/audio_processing/aec3/suppression_filter.h"
+#include "modules/audio_processing/aec3/suppression_filter.h"
 
 #include <math.h>
 #include <algorithm>
@@ -16,7 +16,8 @@
 #include <functional>
 #include <numeric>
 
-#include "webrtc/modules/audio_processing/utility/ooura_fft.h"
+#include "modules/audio_processing/utility/ooura_fft.h"
+#include "rtc_base/numerics/safe_minmax.h"
 
 namespace webrtc {
 namespace {
@@ -122,7 +123,7 @@ void SuppressionFilter::ApplyGain(
   std::transform((*e)[0].begin(), (*e)[0].end(), e_extended.begin(),
                  (*e)[0].begin(), std::plus<float>());
   std::for_each((*e)[0].begin(), (*e)[0].end(), [](float& x_k) {
-    x_k = std::max(std::min(x_k, 32767.0f), -32768.0f);
+    x_k = rtc::SafeClamp(x_k, -32768.f, 32767.f);
   });
   std::copy(e_extended.begin() + kFftLengthBy2, e_extended.begin() + kFftLength,
             std::begin(e_output_old_[0]));
@@ -154,7 +155,7 @@ void SuppressionFilter::ApplyGain(
     if (e->size() > 2) {
       RTC_DCHECK_EQ(3, e->size());
       std::for_each((*e)[2].begin(), (*e)[2].end(), [&](float& a) {
-        a = std::max(std::min(a * high_bands_gain, 32767.0f), -32768.0f);
+        a = rtc::SafeClamp(a * high_bands_gain, -32768.f, 32767.f);
       });
     }
 

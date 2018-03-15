@@ -124,8 +124,8 @@ AS_IF([test "x$enable_neon" != "xno"],
 )
 AM_CONDITIONAL([HAVE_NEON], [test "x$HAVE_NEON" = "x1"])
 
-COMMON_CFLAGS="-DWEBRTC_AUDIO_PROCESSING_ONLY_BUILD ${PLATFORM_CFLAGS} ${OS_CFLAGS} ${ARCH_CFLAGS} -DNDEBUG -I\$(top_srcdir)"
-COMMON_CXXFLAGS="-std=c++11 -DWEBRTC_AUDIO_PROCESSING_ONLY_BUILD ${PLATFORM_CFLAGS} ${OS_CFLAGS} ${ARCH_CFLAGS} ${GNUSTL_CFLAGS} -DNDEBUG -I\$(top_srcdir)"
+COMMON_CFLAGS="-DWEBRTC_AUDIO_PROCESSING_ONLY_BUILD ${PLATFORM_CFLAGS} ${OS_CFLAGS} ${ARCH_CFLAGS} -DNDEBUG -I\$(top_srcdir) -I\$(top_srcdir)/webrtc"
+COMMON_CXXFLAGS="-std=c++11 -DWEBRTC_AUDIO_PROCESSING_ONLY_BUILD ${PLATFORM_CFLAGS} ${OS_CFLAGS} ${ARCH_CFLAGS} ${GNUSTL_CFLAGS} -DNDEBUG -I\$(top_srcdir) -I\$(top_srcdir)/webrtc"
 COMMON_LDFLAGS="${OS_LDFLAGS}"
 AC_SUBST([COMMON_CFLAGS])
 AC_SUBST([COMMON_CXXFLAGS])
@@ -138,7 +138,7 @@ webrtc/Makefile
 webrtc/api/Makefile
 webrtc/audio/Makefile
 webrtc/audio/utility/Makefile
-webrtc/base/Makefile
+webrtc/rtc_base/Makefile
 webrtc/common_audio/Makefile
 webrtc/system_wrappers/Makefile
 webrtc/modules/Makefile

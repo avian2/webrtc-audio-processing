@@ -31,8 +31,6 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/cascaded_biquad_filter.h \
 					aec3/comfort_noise_generator.cc \
 					aec3/comfort_noise_generator.h \
-					aec3/decimator_by_4.cc \
-					aec3/decimator_by_4.h \
 					aec3/downsampled_render_buffer.cc \
 					aec3/downsampled_render_buffer.h \
 					aec3/echo_canceller3.cc \
@@ -123,27 +121,6 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					intelligibility/intelligibility_utils.h \
 					intelligibility/intelligibility_enhancer.cc \
 					intelligibility/intelligibility_utils.cc \
-					level_controller/biquad_filter.cc \
-					level_controller/biquad_filter.h \
-					level_controller/down_sampler.cc \
-					level_controller/down_sampler.h \
-					level_controller/gain_applier.cc \
-					level_controller/gain_applier.h \
-					level_controller/gain_selector.cc \
-					level_controller/gain_selector.h \
-					level_controller/level_controller.cc \
-					level_controller/level_controller.h \
-					level_controller/level_controller_constants.h \
-					level_controller/noise_level_estimator.cc \
-					level_controller/noise_level_estimator.h \
-					level_controller/noise_spectrum_estimator.cc \
-					level_controller/noise_spectrum_estimator.h \
-					level_controller/peak_level_estimator.cc \
-					level_controller/peak_level_estimator.h \
-					level_controller/saturating_gain_estimator.cc \
-					level_controller/saturating_gain_estimator.h \
-					level_controller/signal_classifier.cc \
-					level_controller/signal_classifier.h \
 					logging/apm_data_dumper.cc \
 					logging/apm_data_dumper.h \
 					transient/common.h \
@@ -280,7 +257,7 @@ libwebrtc_audio_processing_la_CXXFLAGS = $(AM_CXXFLAGS) $(COMMON_CXXFLAGS) \
 				       -DWEBRTC_INTELLIGIBILITY_ENHANCER=1
 
 libwebrtc_audio_processing_la_LIBADD = $(top_builddir)/webrtc/libwebrtc.la \
-				       $(top_builddir)/webrtc/base/libbase.la \
+				       $(top_builddir)/webrtc/rtc_base/librtc_base.la \
 				       $(top_builddir)/webrtc/system_wrappers/libsystem_wrappers.la \
 				       $(top_builddir)/webrtc/common_audio/libcommon_audio.la \
 				       $(top_builddir)/webrtc/modules/audio_coding/libaudio_coding.la \
