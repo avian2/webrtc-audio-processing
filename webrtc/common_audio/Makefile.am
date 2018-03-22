@@ -74,6 +74,8 @@ libcommon_audio_la_SOURCES = resampler/include/push_resampler.h \
 			     fft4g.c \
 			     fft4g.h \
 			     fir_filter.h \
+			     fir_filter_factory.cc \
+			     fir_filter_factory.h \
 			     lapped_transform.cc \
 			     lapped_transform.h \
 			     real_fourier.cc \

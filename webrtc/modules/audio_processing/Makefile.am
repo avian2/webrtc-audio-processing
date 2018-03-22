@@ -2,6 +2,8 @@ lib_LTLIBRARIES = libwebrtc_audio_processing.la
 
 libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					include/audio_processing.h \
+					include/audio_processing_statistics.cc \
+					include/audio_processing_statistics.h \
 					include/aec_dump.cc \
 					include/aec_dump.h \
 					include/config.cc \
@@ -33,6 +35,8 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/cascaded_biquad_filter.h \
 					aec3/comfort_noise_generator.cc \
 					aec3/comfort_noise_generator.h \
+					aec3/decimator.cc \
+					aec3/decimator.h \
 					aec3/downsampled_render_buffer.cc \
 					aec3/downsampled_render_buffer.h \
 					aec3/echo_canceller3.cc \
@@ -60,6 +64,7 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/matched_filter.h \
 					aec3/matched_filter_lag_aggregator.cc \
 					aec3/matched_filter_lag_aggregator.h \
+					aec3/matrix_buffer.cc \
 					aec3/output_selector.cc \
 					aec3/output_selector.h \
 					aec3/render_buffer.cc \
