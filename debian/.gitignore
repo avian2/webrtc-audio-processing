@@ -1,0 +1,9 @@
+.debhelper
+autoreconf.*
+debhelper-build-stamp
+files
+*.debhelper.log
+*.substvars
+libwebrtc-audio-processing-dev
+libwebrtc-audio-processing1
+tmp
