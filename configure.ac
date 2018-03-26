@@ -1,7 +1,7 @@
 AC_INIT([webrtc-audio-processing], [0.3])
 AM_INIT_AUTOMAKE([dist-xz subdir-objects tar-ustar])
 
-AC_SUBST(LIBWEBRTC_AUDIO_PROCESSING_VERSION_INFO, [1:0:0])
+AC_SUBST(LIBWEBRTC_AUDIO_PROCESSING_VERSION_INFO, [2:0:0])
 
 AM_SILENT_RULES([yes])
 
