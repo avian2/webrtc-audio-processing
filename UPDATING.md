@@ -37,7 +37,8 @@ project source code.
      this is possible.
 
 5. ```webrtc/modules/audio_processing/include/audio_processing.h``` is the main
-   include file, so look for API changes here.
+   include file, so look for API changes here. `media/engine/webrtcvoiceengine.cc`
+   contains a useful example usage of the API.
 
    * The current policy is that we mirror upstream API as-is.
 
