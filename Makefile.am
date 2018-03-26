@@ -20,11 +20,13 @@ nobase_webrtcinclude_HEADERS = webrtc/api/video/video_rotation.h \
 			       webrtc/api/array_view.h \
 			       webrtc/api/audio/echo_canceller3_config.h \
 			       webrtc/api/audio/echo_control.h \
+			       webrtc/rtc_base/logging.h \
 			       webrtc/rtc_base/platform_file.h \
 			       webrtc/rtc_base/numerics/safe_compare.h \
 			       webrtc/rtc_base/numerics/safe_conversions.h \
 			       webrtc/rtc_base/numerics/safe_conversions_impl.h \
 			       webrtc/rtc_base/sanitizer.h \
+			       webrtc/rtc_base/thread_annotations.h \
 			       webrtc/rtc_base/type_traits.h \
 			       webrtc/rtc_base/timeutils.h \
 			       webrtc/common_types.h \
