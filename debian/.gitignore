@@ -5,5 +5,5 @@ files
 *.debhelper.log
 *.substvars
 libwebrtc-audio-processing-dev
-libwebrtc-audio-processing1
+libwebrtc-audio-processing1t
 tmp
