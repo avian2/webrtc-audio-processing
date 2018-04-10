@@ -38,7 +38,7 @@ class RenderDelayBufferImpl final : public RenderDelayBuffer {
   BufferingEvent Insert(const std::vector<std::vector<float>>& block) override;
   BufferingEvent PrepareCaptureProcessing() override;
   bool SetDelay(size_t delay) override;
-  rtc::Optional<size_t> Delay() const override { return delay_; }
+  size_t Delay() const override { return MapInternalDelayToExternalDelay(); }
   size_t MaxDelay() const override {
     return blocks_.buffer.size() - 1 - buffer_headroom_;
   }
@@ -77,7 +77,8 @@ class RenderDelayBufferImpl final : public RenderDelayBuffer {
   size_t render_activity_counter_ = 0;
 
   int LowRateBufferOffset() const { return DelayEstimatorOffset(config_) >> 1; }
-  int MaxExternalDelayToInternalDelay(size_t delay) const;
+  int MapExternalDelayToInternalDelay(size_t external_delay_blocks) const;
+  int MapInternalDelayToExternalDelay() const;
   void ApplyDelay(int delay);
   void InsertBlock(const std::vector<std::vector<float>>& block,
                    int previous_write);
@@ -167,7 +168,7 @@ RenderDelayBufferImpl::RenderDelayBufferImpl(const EchoCanceller3Config& config,
               kBlockSize),
       spectra_(blocks_.buffer.size(), kFftLengthBy2Plus1),
       ffts_(blocks_.buffer.size()),
-      delay_(config_.delay.min_echo_path_delay_blocks),
+      delay_(config_.delay.default_delay),
       echo_remover_buffer_(&blocks_, &spectra_, &ffts_),
       low_rate_(GetDownSampledBufferSize(config.delay.down_sampling_factor,
                                          config.delay.num_filters)),
@@ -215,7 +216,7 @@ RenderDelayBuffer::BufferingEvent RenderDelayBufferImpl::Insert(
     } else {
       if (++num_api_calls_in_a_row_ > max_observed_jitter_) {
         max_observed_jitter_ = num_api_calls_in_a_row_;
-        RTC_LOG(LS_INFO)
+        RTC_LOG(LS_WARNING)
             << "New max number api jitter observed at render block "
             << render_call_counter_ << ":  " << num_api_calls_in_a_row_
             << " blocks";
@@ -263,7 +264,7 @@ RenderDelayBufferImpl::PrepareCaptureProcessing() {
     } else {
       if (++num_api_calls_in_a_row_ > max_observed_jitter_) {
         max_observed_jitter_ = num_api_calls_in_a_row_;
-        RTC_LOG(LS_INFO)
+        RTC_LOG(LS_WARNING)
             << "New max number api jitter observed at capture block "
             << capture_call_counter_ << ":  " << num_api_calls_in_a_row_
             << " blocks";
@@ -310,7 +311,7 @@ bool RenderDelayBufferImpl::SetDelay(size_t delay) {
   delay_ = delay;
 
   // Compute the internal delay and limit the delay to the allowed range.
-  int internal_delay = MaxExternalDelayToInternalDelay(*delay_);
+  int internal_delay = MapExternalDelayToInternalDelay(*delay_);
   internal_delay_ =
       std::min(MaxDelay(), static_cast<size_t>(std::max(internal_delay, 0)));
 
@@ -322,7 +323,7 @@ bool RenderDelayBufferImpl::SetDelay(size_t delay) {
 // Returns whether the specified delay is causal.
 bool RenderDelayBufferImpl::CausalDelay(size_t delay) const {
   // Compute the internal delay and limit the delay to the allowed range.
-  int internal_delay = MaxExternalDelayToInternalDelay(delay);
+  int internal_delay = MapExternalDelayToInternalDelay(delay);
   internal_delay =
       std::min(MaxDelay(), static_cast<size_t>(std::max(internal_delay, 0)));
 
@@ -331,7 +332,7 @@ bool RenderDelayBufferImpl::CausalDelay(size_t delay) const {
 }
 
 // Maps the externally computed delay to the delay used internally.
-int RenderDelayBufferImpl::MaxExternalDelayToInternalDelay(
+int RenderDelayBufferImpl::MapExternalDelayToInternalDelay(
     size_t external_delay_blocks) const {
   const int latency = BufferLatency(low_rate_);
   RTC_DCHECK_LT(0, sub_block_size_);
@@ -341,8 +342,20 @@ int RenderDelayBufferImpl::MaxExternalDelayToInternalDelay(
          DelayEstimatorOffset(config_);
 }
 
+// Maps the internally used delay to the delay used externally.
+int RenderDelayBufferImpl::MapInternalDelayToExternalDelay() const {
+  const int latency = BufferLatency(low_rate_);
+  int latency_blocks = latency / sub_block_size_;
+  int internal_delay = spectra_.read >= spectra_.write
+                           ? spectra_.read - spectra_.write
+                           : spectra_.size + spectra_.read - spectra_.write;
+
+  return internal_delay - latency_blocks + DelayEstimatorOffset(config_);
+}
+
 // Set the read indices according to the delay.
 void RenderDelayBufferImpl::ApplyDelay(int delay) {
+  RTC_LOG(LS_WARNING) << "Applying internal delay of " << delay << " blocks.";
   blocks_.read = blocks_.OffsetIndex(blocks_.write, -delay);
   spectra_.read = spectra_.OffsetIndex(spectra_.write, delay);
   ffts_.read = ffts_.OffsetIndex(ffts_.write, delay);

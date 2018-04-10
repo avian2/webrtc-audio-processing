@@ -270,14 +270,13 @@ class AudioProcessing : public rtc::RefCountInterface {
       bool enabled = false;
     } high_pass_filter;
 
-    // Enables the next generation AGC functionality. This feature replaces the
-    // standard methods of gain control in the previous AGC.
-    // The functionality is not yet activated in the code and turning this on
-    // does not yet have the desired behavior.
+    // Enables the next generation AGC functionality. This feature
+    // replaces the standard methods of gain control in the previous
+    // AGC. This functionality is currently only partially
+    // implemented.
     struct GainController2 {
       bool enabled = false;
       float fixed_gain_db = 0.f;
-      bool enable_limiter = true;
     } gain_controller2;
 
     // Explicit copy assignment implementation to avoid issues with memory
@@ -1092,7 +1091,10 @@ class CustomProcessing {
 class EchoDetector {
  public:
   // (Re-)Initializes the submodule.
-  virtual void Initialize(int sample_rate_hz, int num_channels) = 0;
+  virtual void Initialize(int capture_sample_rate_hz,
+                          int num_capture_channels,
+                          int render_sample_rate_hz,
+                          int num_render_channels) = 0;
 
   // Analysis (not changing) of the render signal.
   virtual void AnalyzeRenderAudio(rtc::ArrayView<const float> render_audio) = 0;

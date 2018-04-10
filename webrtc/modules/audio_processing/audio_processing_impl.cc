@@ -45,7 +45,7 @@
 #include "modules/audio_processing/voice_detection_impl.h"
 #include "modules/include/module_common_types.h"
 #include "rtc_base/atomicops.h"
-#include "system_wrappers/include/file_wrapper.h"
+#include "rtc_base/system/file_wrapper.h"
 #include "system_wrappers/include/metrics.h"
 
 // Check to verify that the define for the intelligibility enhancer is properly
@@ -1792,8 +1792,10 @@ void AudioProcessingImpl::InitializeGainController2() {
 
 void AudioProcessingImpl::InitializeResidualEchoDetector() {
   RTC_DCHECK(private_submodules_->echo_detector);
-  private_submodules_->echo_detector->Initialize(proc_sample_rate_hz(),
-                                                 num_proc_channels());
+  private_submodules_->echo_detector->Initialize(
+      proc_sample_rate_hz(), num_proc_channels(),
+      formats_.render_processing_format.sample_rate_hz(),
+      formats_.render_processing_format.num_channels());
 }
 
 void AudioProcessingImpl::InitializePostProcessor() {

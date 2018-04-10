@@ -39,8 +39,13 @@ librtc_base_la_SOURCES = criticalsection.cc \
 		     stringencode.h \
 		     stringutils.cc \
 		     stringutils.h \
+		     memory/aligned_malloc.cc \
+		     memory/aligned_malloc.h \
+		     memory/aligned_array.h \
 		     strings/string_builder.cc \
 		     strings/string_builder.h \
+		     system/file_wrapper.cc \
+		     system/file_wrapper.h \
 		     thread_checker.h \
 		     thread_checker_impl.cc \
 		     thread_checker_impl.h \

@@ -17,7 +17,7 @@ several different projects.
 Current state
 =============
 
-Synced to webrtc git commit 3133857, as used by Chromium 67.0.3370.0.
+Synced to webrtc git commit 4da18e8, as used by Chromium 67.0.3393.1.
 
 Feedback
 ========

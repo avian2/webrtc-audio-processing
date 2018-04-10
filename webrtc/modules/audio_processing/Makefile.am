@@ -56,6 +56,8 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/fft_buffer.cc\
 					aec3/fft_buffer.h\
 					aec3/fft_data.h \
+					aec3/filter_analyzer.cc \
+					aec3/filter_analyzer.h \
 					aec3/frame_blocker.cc \
 					aec3/frame_blocker.h \
 					aec3/main_filter_update_gain.cc \
@@ -115,6 +117,16 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					agc/loudness_histogram.h \
 					agc/utility.cc \
 					agc/utility.h \
+					agc2/adaptive_agc.cc \
+					agc2/adaptive_agc.h \
+					agc2/adaptive_digital_gain_applier.cc \
+					agc2/adaptive_digital_gain_applier.h \
+					agc2/adaptive_mode_level_estimator.cc \
+					agc2/adaptive_mode_level_estimator.h \
+					agc2/biquad_filter.cc \
+					agc2/biquad_filter.h \
+					agc2/down_sampler.cc \
+					agc2/down_sampler.h \
 					agc2/fixed_digital_level_estimator.cc \
 					agc2/fixed_digital_level_estimator.h \
 					agc2/fixed_gain_controller.cc \
@@ -123,6 +135,15 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					agc2/interpolated_gain_curve.h \
 					agc2/gain_curve_applier.cc \
 					agc2/gain_curve_applier.h \
+					agc2/noise_level_estimator.cc \
+					agc2/noise_level_estimator.h \
+					agc2/noise_spectrum_estimator.cc \
+					agc2/noise_spectrum_estimator.h \
+					agc2/signal_classifier.cc \
+					agc2/signal_classifier.h \
+					agc2/saturation_protector.h \
+					agc2/saturation_protector.cc \
+					agc2/saturation_protector.h \
 					beamformer/array_util.cc \
 					beamformer/array_util.h \
 					beamformer/complex_matrix.h \
@@ -191,6 +212,7 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					vad/standalone_vad.cc \
 					vad/vad_audio_proc.cc \
 					vad/vad_circular_buffer.cc \
+					vad/vad_with_level.h \
 					vad/voice_activity_detector.cc \
 					audio_buffer.cc \
 					audio_buffer.h \
