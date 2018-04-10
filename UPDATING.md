@@ -12,6 +12,17 @@ project source code.
    in the Chromium tree for the current webrtc version being used, and then
    just use that commit hash with the webrtc tree.
 
+   * Note the last release tag on this page (e.g. something like 67.0.3393.1)
+     https://chromium.googlesource.com/chromium/src.git/+refs
+
+   * Checkout that tag from https://chromium.googlesource.com/chromium/src.git
+     (e.g. `git fetch --depth 1 origin tag 67.0.3393.1`)
+
+   * Search for the commit hash around `third_party/webrtc` in `DEPS` file:
+
+           'src/third_party/webrtc':
+             (Var("webrtc_git")) + '/src.git@4da18e89bdee78df4478b66cdd0e6f6a38d61b4d',
+
 3. [Meld][meld] is a great tool for diffing two directories. Start by running
    it on ```webrtc-audio-processing/webrtc``` and
    ```chromium/third_party/webrtc```.
