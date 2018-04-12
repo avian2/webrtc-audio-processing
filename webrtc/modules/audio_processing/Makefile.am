@@ -11,12 +11,11 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec/aec_common.h \
 					aec/aec_core.cc \
 					aec/aec_core.h \
-					aec/aec_core_optimized_moethods.h \
+					aec/aec_core_optimized_methods.h \
 					aec/aec_resampler.cc \
 					aec/aec_resampler.h \
 					aec/echo_cancellation.cc \
 					aec/echo_cancellation.h \
-					aecm/include/echo_control_mobile.h \
 					aec3/adaptive_fir_filter.cc \
 					aec3/adaptive_fir_filter.h \
 					aec3/aec3_common.cc \
@@ -37,6 +36,7 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/comfort_noise_generator.h \
 					aec3/decimator.cc \
 					aec3/decimator.h \
+					aec3/delay_estimate.h \
 					aec3/downsampled_render_buffer.cc \
 					aec3/downsampled_render_buffer.h \
 					aec3/echo_canceller3.cc \
@@ -65,6 +65,7 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aec3/matched_filter_lag_aggregator.cc \
 					aec3/matched_filter_lag_aggregator.h \
 					aec3/matrix_buffer.cc \
+					aec3/matrix_buffer.h \
 					aec3/output_selector.cc \
 					aec3/output_selector.h \
 					aec3/render_buffer.cc \
@@ -102,7 +103,7 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					aecm/aecm_core_c.cc \
 					aecm/aecm_defines.h \
 					agc/legacy/analog_agc.c \
-					agc/legacy/analog_agc.c.h \
+					agc/legacy/analog_agc.h \
 					agc/legacy/digital_agc.c \
 					agc/legacy/digital_agc.h \
 					agc/legacy/gain_control.h \
@@ -115,6 +116,8 @@ libwebrtc_audio_processing_la_SOURCES = include/audio_processing.cc \
 					agc/loudness_histogram.h \
 					agc/utility.cc \
 					agc/utility.h \
+					agc2/agc2_common.h \
+					agc2/agc2_testing_common.h \
 					agc2/fixed_digital_level_estimator.cc \
 					agc2/fixed_digital_level_estimator.h \
 					agc2/fixed_gain_controller.cc \
@@ -231,8 +234,8 @@ if NS_FIXED
 COMMON_CFLAGS += -DWEBRTC_NS_FIXED=1
 COMMON_CXXFLAGS += -DWEBRTC_NS_FIXED=1
 libwebrtc_audio_processing_la_SOURCES += \
-					ns/include/noise_suppression_x.h \
 					ns/noise_suppression_x.c \
+					ns/noise_suppression_x.h \
 					ns/nsx_defines.h \
 					ns/nsx_core.c \
 					ns/nsx_core.h \
@@ -245,8 +248,8 @@ else
 COMMON_CFLAGS += -DWEBRTC_NS_FLOAT=1
 COMMON_CXXFLAGS += -DWEBRTC_NS_FLOAT=1
 libwebrtc_audio_processing_la_SOURCES += \
-					ns/include/noise_suppression.h \
 					ns/noise_suppression.c \
+					ns/noise_suppression.h \
 					ns/defines.h \
 					ns/ns_core.c \
 					ns/ns_core.h \
@@ -296,7 +299,6 @@ libwebrtc_audio_processing_la_LDFLAGS = $(AM_LDFLAGS) $(COMMON_LDFLAGS) \
 # FIXME: The MIPS optimisations need to be hooked up once we have the
 # autotools conditionals in place
 EXTRA_DIST = BUILD.gn \
-	     aec/aec_core_mips.c \
-	     aec/aec_rdft_neon.c \
-	     aecm/aecm_core_mips.c \
+	     aec/aec_core_mips.cc \
+	     aecm/aecm_core_mips.cc \
 	     ns/nsx_core_mips.c
