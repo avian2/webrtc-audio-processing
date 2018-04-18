@@ -18,7 +18,8 @@ noinst_HEADERS = arraysize.h \
 		 trace_event.h \
 		 type_traits.h
 
-librtc_base_la_SOURCES = criticalsection.cc \
+librtc_base_la_SOURCES = compile_assert_c.h \
+		     criticalsection.cc \
 		     criticalsection.h \
 		     checks.cc \
 		     checks.h \
@@ -28,13 +29,17 @@ librtc_base_la_SOURCES = criticalsection.cc \
 		     event_tracer.h \
 		     logging.cc \
 		     logging.h \
+		     numerics/safe_minmax.h \
 		     platform_thread.cc \
+		     platform_thread.h \
 		     platform_thread_types.cc \
 		     platform_thread_types.h \
 		     platform_file.cc \
 		     platform_file.h \
 		     race_checker.cc \
 		     race_checker.h \
+		     refcounter.h \
+		     refcountedobject.h \
 		     stringencode.cc \
 		     stringencode.h \
 		     stringutils.cc \
