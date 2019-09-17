@@ -5,7 +5,7 @@ Uploaders:
  Felipe Sateler <fsateler@debian.org>
 Section: libs
 Priority: optional
-Build-Depends: autotools-dev, debhelper (>= 9), dh-autoreconf
+Build-Depends: autotools-dev, debhelper (>= 9), dh-autoreconf, pkg-config
 Standards-Version: 3.9.8
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-pulseaudio/webrtc-audio-processing.git/
 Vcs-Git: https://anonscm.debian.org/git/pkg-pulseaudio/webrtc-audio-processing.git
