@@ -1,3 +1,10 @@
+webrtc-audio-processing (0.3-1tomaz8) unstable; urgency=medium
+
+  * Build with git-buildpackage.
+  * Add pkg-config to Build-Depends.
+
+ -- Tomaz Solc <tomaz.solc@tablix.org>  Tue, 17 Sep 2019 11:42:23 +0100
+
 webrtc-audio-processing (0.3-1tomaz7) unstable; urgency=medium
 
   * For testing only.
